@@ -61,7 +61,7 @@ KieSession ksession = kc.newKieSession("Aedes",config);
        Scenary ufes = new Scenary("c0,c1,c2,c3,c4,c5,c6,c7,c8,c9","c0-c1,c1-c2,c2-c3,c3-c4,c4-c5,c5-c6,c6-c7,c7-c8,c8-c9","","c0,c1,c2,c3,c4,c5,c6,c7,c8,c9","c0",90);
         ksession.insert(ufes);
         ksession.fireAllRules();
-        clock = ksession.getSessionClock();
+        /*clock = ksession.getSessionClock();
 
        while(true)
        {
@@ -70,7 +70,7 @@ KieSession ksession = kc.newKieSession("Aedes",config);
            System.out.println("Avançou");
            
        }
-
+*/
     }
 }
 /*

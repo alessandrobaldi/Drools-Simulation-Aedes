@@ -5,16 +5,118 @@ import java.lang.Math;
 
 global java.util.List list;
  
-rule "mosquitoLife"
-@role( event )
-@timestamp( callDateTime ) 
-@duration( callDuration ) 
-@expires( 912h00m )
- when
+rule "fly"
+    salience 11
+    when
         Scenary( $houses: scenary )
         $house: House() from $houses
         $mosq: Mosquito(controlfly==false) from $house.getMosquitos()
     then
-    System.out.println("Mosquito Alive");
-    end
+        //System.out.println("Fly Rule");
+        $house.changeMosquito($mosq);
+        //System.out.println("Fly Rule Ended");
+end
+
+rule "die"
+    salience 10
+    when
+        Scenary( $houses: scenary )
+        $house: House() from $houses
+        $mosq: Mosquito(days==38) from $house.getMosquitos()
+    then
+        $house.removeMosquito($mosq);
+end
+        
+
+rule "hatchEggs"
+    salience 9
+    when
+        Scenary( $houses: scenary )
+        $house: House() from $houses
+        $egg: Eggs(days==20) from $house.getEggs()
+    then
+        //System.out.println("hatchEggs Rule");
+        $house.addMosquito();
+        $house.addMosquito();
+        $house.addMosquito();
+        $house.addMosquito();
+        $house.addMosquito();
+        $house.addMosquito();
+        $house.addMosquito();
+        $house.addMosquito();
+        $house.addMosquito();
+        $house.addMosquito();
+        $house.removeEggs($egg);
+        //System.out.println("hatchEggs Rule Ended");
+end
+
+
+
+rule "layEggs"
+    salience 8
+    when
+        Scenary( $houses: scenary )
+        $house: House((focus==true&&activefocus==true)||trap==true) from $houses
+        $mosq: Mosquito(controleggs==false) from $house.getMosquitos()
+    then
+        //System.out.println("layEggs Rule");
+        $mosq.setControleggs(true);
+        $house.addEggs();
+        //System.out.println("Eggs Layed");
+end
+
+
+rule "Agent"
+    salience 7
+    when
+        Scenary( $houses: scenary )
+        $house: House(trap==true) from $houses
+        $egg: Eggs(days==4) from $house.getEggs()
+    then
+        //System.out.println("agent Rule");
+        $house.callAgent();
+        //System.out.println("Agent has terminated service");
+end
+
+        
+rule "DayPass1"
+    salience 6
+    when
+         $sc: Scenary()
+         Scenary( $houses: scenary )
+         $house: House() from $houses
+         Scenary(day<total)
+         $egg: Eggs() from $house.getEggs()
+    then
+        //System.out.println("DayPass Rule");
+        $sc.clearDay();
+        //System.out.println("DayPassed");
+         update($sc);
+end
+
+rule "DayPass2"
+    salience 6
+    when
+         $sc: Scenary()
+         Scenary( $houses: scenary )
+         $house: House() from $houses
+         Scenary(day<total)
+         $ms: Mosquito() from $house.getMosquitos()
+    then
+        //System.out.println("DayPass Rule");
+        $sc.clearDay();
+        //System.out.println("DayPassed");
+         update($sc);
+end
+
+rule "SimulationEnded"
+    salience 5
+    when
+        //nothing to do in another rules...
+        $sc: Scenary()
+    then
+        //System.out.println("Simulation Ended");
+        $sc.getStats();
+       
+end
     
