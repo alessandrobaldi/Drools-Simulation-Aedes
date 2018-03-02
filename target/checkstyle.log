@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="7.4">
+<file name="/Users/alessandro/NetBeansProjects/Drools/src/main/java/org/drools/simulation/Mosquito.java">
+</file>
+<file name="/Users/alessandro/NetBeansProjects/Drools/src/main/java/org/drools/simulation/AedesSimulation.java">
+<error line="19" column="1" severity="error" message="Importação redundante do mesmo pacote - org.drools.simulation.Scenary." source="com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck"/>
+<error line="26" severity="error" message="Declaração de importação para &apos;java.util.ArrayList&apos; está na ordem errada. Deve estar no &apos;STANDARD_JAVA_PACKAGE&apos; grupo, esperando que as importações não atribuídos nesta linha." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+<error line="27" severity="error" message="Declaração de importação para &apos;java.util.List&apos; está na ordem errada. Deve estar no &apos;STANDARD_JAVA_PACKAGE&apos; grupo, esperando que as importações não atribuídos nesta linha." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+</file>
+<file name="/Users/alessandro/NetBeansProjects/Drools/src/main/java/org/drools/simulation/Agents.java">
+</file>
+<file name="/Users/alessandro/NetBeansProjects/Drools/src/main/java/org/drools/simulation/Eggs.java">
+</file>
+<file name="/Users/alessandro/NetBeansProjects/Drools/src/main/java/org/drools/simulation/Scenary.java">
+</file>
+<file name="/Users/alessandro/NetBeansProjects/Drools/src/main/java/org/drools/simulation/House.java">
+</file>
+</checkstyle>

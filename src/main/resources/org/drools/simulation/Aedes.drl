@@ -1,0 +1,20 @@
+package org.drools.simulation;
+
+import org.drools.simulation.*;
+import java.lang.Math;
+
+global java.util.List list;
+ 
+rule "mosquitoLife"
+@role( event )
+@timestamp( callDateTime ) 
+@duration( callDuration ) 
+@expires( 912h00m )
+ when
+        Scenary( $houses: scenary )
+        $house: House() from $houses
+        $mosq: Mosquito(controlfly==false) from $house.getMosquitos()
+    then
+    System.out.println("Mosquito Alive");
+    end
+    

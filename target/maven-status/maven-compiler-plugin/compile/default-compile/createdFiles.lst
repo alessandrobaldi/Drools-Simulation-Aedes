@@ -1,0 +1,6 @@
+org/drools/simulation/House.class
+org/drools/simulation/Agents.class
+org/drools/simulation/Eggs.class
+org/drools/simulation/Scenary.class
+org/drools/simulation/Mosquito.class
+org/drools/simulation/AedesSimulation.class
